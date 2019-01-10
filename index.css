@@ -17,6 +17,7 @@ body, html {
 
 .map {
    border: 3px solid white;
+   background: #394658;
 }
 
 #controls {
