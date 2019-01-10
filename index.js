@@ -137,6 +137,7 @@ function buildMaps() {
 
 buildMaps();
 document.getElementById('zoom').onchange = () => {
+   $('#zoom-val').innerText = document.getElementById('zoom').value;
    maps.forEach((map) => {
       console.log(map)
       map.setZoom(document.getElementById('zoom').value)
