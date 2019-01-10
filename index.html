@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Map Grid</title>
+
+
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
+   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+
+   <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+   <div id="controls">
+      <div class="group">
+         <label for="type">Distance or Time</label>
+         <select id="type">
+            <option value="time" selected >Minutes</option>
+            <option value="distance">Miles</option>
+         </select>
+      </div>
+      <div class="group">
+         <label for="range">Range</label>
+         <input type="range" min="1" max="20000" value="1000" class="slider" id="range">
+         <span id="slider-val">1000</span>
+      </div>
+      <div class="group">
+         <label for="mode">Mode</label>
+         <select id="mode">
+            <option value="car" selected>Car</option>
+            <option value="pedestrian">Pedestrian</option>
+         </select>
+      </div>
+      <div class="group">
+         <label for="traffic">Traffic</label>
+         <select id="traffic">
+            <option value="enabled" selected>Traffic Enabled</option>
+            <option value="disabled">Traffic Disabled</option>
+         </select>
+      </div>
+      <div class="group">
+         <label for="zoom">Map Zoom Level</label>
+         <input type="range" min="3" max="16" value="10" class="slider" id="zoom">
+         <span id="zoom-val">10</span>
+      </div>
+
+
+
+   </div>
+   <div id="container"></div>
+
+   <script src="index.js"></script>
+</body>
+
+</html>

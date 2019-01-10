@@ -1,0 +1,29 @@
+body, html {
+   border: 0;
+   margin: 0;
+   padding: 0;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+
+}
+#container {
+   height: 100%;
+   width: 100vw;
+   display: grid;
+   grid: 1fr 1fr 1fr / 1fr 1fr 1fr;
+   position: relative;
+}
+
+.map {
+   border: 3px solid white;
+}
+
+#controls {
+   /* background: black; */
+   box-sizing: border-box;
+   padding: 20px;
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+}
