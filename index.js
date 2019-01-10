@@ -1,13 +1,13 @@
 
 const $ = (q) => document.querySelector(q);
-
+const color = '#2DD5C9'
 const hereCredentials = {
    id: 'UQ75LhFcnAv0DtOUwBEA',
    code: 'f5nyezNmYF4wvuJqQgNSkg'
 }
 
 //TODO: 5. Get Map Tile Url from dev poral
-const hereTileUrl = `https://2.base.maps.api.here.com/maptile/2.1/maptile/newest/reduced.day/{z}/{x}/{y}/512/png8?app_id=${hereCredentials.id}&app_code=${hereCredentials.code}&ppi=320`;
+const hereTileUrl = `https://2.base.maps.api.here.com/maptile/2.1/maptile/newest/reduced.night/{z}/{x}/{y}/512/png8?app_id=${hereCredentials.id}&app_code=${hereCredentials.code}&ppi=320`;
 
 const hereIsolineUrl = (coords, options) => `https://isoline.route.api.here.com/routing/7.2/calculateisoline.json?app_id=${hereCredentials.id}&app_code=${hereCredentials.code}&mode=shortest;${options.mode};traffic:${options.traffic}&start=geo!${coords[0]},${coords[1]}&range=${options.range}&rangetype=${options.type}`
 
@@ -91,11 +91,16 @@ function buildMaps() {
       div.classList.add('map')
       $('#container').appendChild(div);
 
+      let attribution = false
+      if (i == items - 1) {
+         attribution = true
+      }
       const map = L.map('map' + i, {
          center: locations[i].coordinates,
          zoom: 10,
          layers: [L.tileLayer(hereTileUrl)],
-         zoomControl: false
+         zoomControl: false,
+         attributionControl: attribution
       });
       const marker = L.marker(locations[i].coordinates, {
          draggable: true
@@ -108,7 +113,7 @@ function buildMaps() {
 
          map.eachLayer((layer) => {
 
-            if (layer.hasOwnProperty('options') && layer.options.color == 'red' ) {
+            if (layer.hasOwnProperty('options') && layer.options.color == color ) {
 
                   map.removeLayer(layer);
 
@@ -120,7 +125,7 @@ function buildMaps() {
 
             const isoline = res.response.isoline[0].component[0].shape.map(x => [x.split(',')[0], x.split(',')[1]]);
 
-            const polygon = L.polygon(isoline, {color: 'red'}).addTo(map);
+            const polygon = L.polygon(isoline, {color: color}).addTo(map);
          });
       })
       maps.push(map);
@@ -129,7 +134,7 @@ function buildMaps() {
 
          const isoline = res.response.isoline[0].component[0].shape.map(x => [x.split(',')[0], x.split(',')[1]]);
 
-         const polygon = L.polygon(isoline, {color: 'red'}).addTo(map);
+         const polygon = L.polygon(isoline, {color: color}).addTo(map);
       });
 
    }
