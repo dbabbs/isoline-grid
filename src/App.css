@@ -1,18 +1,17 @@
-body, html {
-   border: 0;
-   margin: 0;
-   padding: 0;
+.app {
    height: 100%;
    display: flex;
    flex-direction: column;
-
+   position: absolute;
 }
-#container {
+
+.map-grid {
    height: 100%;
    width: 100vw;
    display: grid;
-   grid: 1fr 1fr 1fr / 1fr 1fr 1fr;
+   grid: repeat(3, 1fr) / repeat(3, 1fr);
    position: relative;
+   grid-gap: 3px;
 }
 
 .map {
@@ -20,11 +19,15 @@ body, html {
    background: #394658;
 }
 
-#controls {
+.controls {
    /* background: black; */
    box-sizing: border-box;
    padding: 20px;
    width: 100%;
-   display: flex;
-   justify-content: space-between;
+   display: grid;
+   grid-template-columns: repeat(6, 1fr);
+}
+
+label {
+   display: block;
 }
