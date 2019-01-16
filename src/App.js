@@ -55,7 +55,7 @@ class App extends React.Component {
             range: 300000,
             mode: 'car',
             traffic: 'disabled',
-            style: 'reduced.day'
+            style: 'reduced.night'
          }
       }
    }
