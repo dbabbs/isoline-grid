@@ -16,11 +16,9 @@
 
 .map {
    border: 3px solid white;
-   background: #394658;
 }
 
 .controls {
-   /* background: black; */
    box-sizing: border-box;
    padding: 20px;
    width: 100%;

@@ -3,21 +3,13 @@ import './App.css';
 import { MapContainer } from './MapContainer';
 import { hereIsolineUrl, maxIsolineRangeLookup } from './here';
 
-/*
-TODO:
-Questions for Jayson / React expert
-
-2. Is creating 'copy' the right way to change state
-2. When do I need to use this.function_name = this.function_name.bind(this);
-*/
-
-
-
 class App extends React.Component {
 
    constructor(props) {
       super(props);
       this.state = {
+
+         //Coordinates are in format [Latitude, Longitude]
          maps: [
             {
                name: 'Seattle, WA',
@@ -52,8 +44,8 @@ class App extends React.Component {
                coordinates: [-26.205689, 28.042450],
                polygon: []
             }, {
-               name: 'Hong Kong, SAR China',
-               coordinates: [22.316246, 114.174539],
+               name: 'Tokyo, Japan',
+               coordinates: [35.652832, 139.839478],
                polygon: []
             }
          ],
@@ -95,11 +87,10 @@ class App extends React.Component {
          const copy = this.state.maps.slice();
          if (res.hasOwnProperty('response')) {
             copy[index].polygon = res.response.isoline[0].component[0].shape.map(x => [x.split(',')[0], x.split(',')[1]]);
-            copy[index].coordinates = coordinates;
          } else {
             copy[index].polygon = [];
-            copy[index].coordinates = coordinates;
          }
+         copy[index].coordinates = coordinates;
          this.setState({
             maps: copy
          });
@@ -137,37 +128,69 @@ class App extends React.Component {
             <div className="controls">
                <div>
                   <label htmlFor="type">Distance or Time</label>
-                  <select id="type" value={this.state.options.type} onChange={this.handleFormChange}>
+                  <select
+                     id="type"
+                     value={this.state.options.type}
+                     onChange={this.handleFormChange}
+                  >
                      <option value="time">Seconds</option>
                      <option value="distance">Meters</option>
                   </select>
 
                </div>
                <div>
-                  <label htmlFor="range">Range ({parseInt(this.state.options.range).toLocaleString()})</label>
-                  <input id="range" onChange={this.handleFormChange} type="range" min="1" max={max} value={sliderVal} />
+                  <label htmlFor="range">
+                     Range ({parseInt(this.state.options.range).toLocaleString()})
+                  </label>
+                  <input
+                     id="range"
+                     onChange={this.handleFormChange}
+                     type="range"
+                     min="1"
+                     max={max}
+                     value={sliderVal}
+                  />
                </div>
                <div>
                   <label htmlFor="mode">Mode</label>
-                  <select id="mode" onChange={this.handleFormChange} value={this.state.options.mode}>
+                  <select
+                     id="mode"
+                     onChange={this.handleFormChange}
+                     value={this.state.options.mode}
+                  >
                      <option value="car">Car</option>
                      <option value="pedestrian">Pedestrian</option>
                   </select>
                </div>
                <div>
                   <label htmlFor="traffic">Traffic</label>
-                  <select id="traffic" onChange={this.handleFormChange} value={this.state.options.traffic}>
+                  <select
+                     id="traffic"
+                     onChange={this.handleFormChange}
+                     value={this.state.options.traffic}
+                  >
                      <option value="enabled">Traffic Enabled</option>
                      <option value="disabled">Traffic Disabled</option>
                   </select>
                </div>
                <div>
                   <label htmlFor="zoom">Zoom Level ({this.state.options.zoom})</label>
-                  <input id="zoom" onChange={this.handleFormChange} type="range" min="1" max="16" value={this.state.options.zoom} />
+                  <input
+                     id="zoom"
+                     onChange={this.handleFormChange}
+                     type="range"
+                     min="1"
+                     max="16"
+                     value={this.state.options.zoom}
+                  />
                </div>
                <div>
                   <label htmlFor="style">Map Style</label>
-                     <select id="style" onChange={this.handleFormChange} value={this.state.options.style}>
+                     <select
+                        id="style"
+                        onChange={this.handleFormChange}
+                        value={this.state.options.style}
+                     >
                         <option value="reduced.day">Reduced Day </option>
                         <option value="reduced.night">Reduced Night</option>
                         <option value="normal.day">Normal Day</option>
@@ -176,7 +199,6 @@ class App extends React.Component {
                </div>
             </div>
             <div className="map-grid">
-
                {this.state.maps.map((map, index) =>
                   <MapContainer
                      key={index}

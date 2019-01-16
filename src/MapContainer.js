@@ -8,24 +8,20 @@ export class MapContainer extends React.Component {
    constructor(props) {
       super(props);
       this.marker = React.createRef();
-      this.map = React.createRef();
    }
 
    handleDrag = () => {
-
       const coordinates = this.marker.current.leafletElement.getLatLng();
-      console.log(coordinates.lat, coordinates.lng)
-      this.props.handleDrag(this.props.index, [coordinates.lat, coordinates.lng])
+      this.props.handleDrag(this.props.index, [coordinates.lat, coordinates.lng]);
    }
 
    render() {
-
       return (
             <Map
                center={this.props.center}
                zoom={parseInt(this.props.options.zoom)}
                zoomControl={false}
-               ref={this.map}
+               attributionControl={this.props.index === 8}
             >
                <TileLayer
                   url={hereTileUrl(this.props.style)}
@@ -35,6 +31,7 @@ export class MapContainer extends React.Component {
                   draggable={true}
                   onDragEnd={this.handleDrag}
                   ref={this.marker}
+
                />
                {
                   this.props.polygon.length > 0 &&
