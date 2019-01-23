@@ -65,7 +65,11 @@ class App extends React.Component {
       Promise.all(promises).then(res => {
 
          const copy = this.state.maps.map((x, i) => {
-            x.polygon = res[i].response.isoline[0].component[0].shape.map(x => [x.split(',')[0], x.split(',')[1]]);
+            if (res[i].response.isoline[0].component.length > 0) {
+               x.polygon = res[i].response.isoline[0].component[0].shape.map(x => [x.split(',')[0], x.split(',')[1]]);
+            } else {
+               x.polygon = [];
+            }
             return x;
          });
 
