@@ -44,8 +44,8 @@ class App extends React.Component {
                coordinates: [-26.205689, 28.042450],
                polygon: []
             }, {
-               name: 'Tokyo, Japan',
-               coordinates: [35.652832, 139.839478],
+               name: 'Sydney, Australia',
+               coordinates: [-33.865143, 151.209900],
                polygon: []
             }
          ],
