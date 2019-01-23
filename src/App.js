@@ -50,9 +50,9 @@ class App extends React.Component {
             }
          ],
          options: {
-            zoom: 5,
+            zoom: 10,
             type: 'distance',
-            range: 300000,
+            range: 10000,
             mode: 'car',
             traffic: 'disabled',
             style: 'reduced.night'
